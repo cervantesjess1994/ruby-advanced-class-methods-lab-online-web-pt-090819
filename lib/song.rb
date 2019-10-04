@@ -14,40 +14,40 @@ class Song
     song = self.new
     song
   end
-
-  def self.new_by_name(title)
-    song = self.new
-    song.name = title
+  
+  def self.new_by_name(name)
+    song = self.new 
+    song.name = name
     song
   end
-
-  def self.create_by_name(title)
-    song = self.new
-    song.name = title
+  
+  def self.create_by_name(name)
+    song = self.new 
+    song.name = name
     @@all << song
     song
   end
-
-  def self.find_by_name(title)
-    @@all.find {|x| x.name == name}
+  
+  def self.find_by_name(name)
+    @@all.find{|x| x.name == name}
   end
-
-  def self.find_or_create_by_name(title)
-    self.find_by_name(name) || self.create_by_name(name)
+  
+  def self.find_or_create_by_name(name)
+      self.find_by_name(name) || self.create_by_name(name)
   end
-
-  def alphabetical
-    sorted = self.all.sort_by {|song| song.name}
-    sorted
+  
+  def self.alphabetical()
+    @@all.sort_by{|x| x.name}
   end
-
+  
+  
   def self.new_from_filename(name)
-    song = self.now
+    song = self.new 
     song.name = (name.split(" - ")[1].chomp(".mp3"))
     song.artist_name = (name.split(" - ")[0])
     song
   end
-
+  
   def self.create_from_filename(name)
     song = self.new
     song.name = (name.split(" - ")[1].chomp(".mp3"))
@@ -55,8 +55,9 @@ class Song
     @@all << song
     song
   end
-
-  def self.destroy_all
-    self.all.clear
+  
+  def self.destroy_all()
+    @@all.clear
   end
+
 end
